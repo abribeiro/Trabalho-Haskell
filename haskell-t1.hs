@@ -91,9 +91,9 @@ mapfuncxy (x:xs) = (auxFunc x) : mapfuncxy xs
 
 stringList :: [String] -> [String]
 stringList [] = []
-stringList (x:xs) 
+stringList (x:xs)
 		|length x >= 10 = (take 10 x) : stringList (xs)
-        |length x < 10 = (x ++ (replicate (10 - (length x)) '.')) : compString (xs)
+    	|length x < 10 = (x ++ (replicate (10 - (length x)) '.')) : compString (xs)
 
 			  
 -- 4. Dada uma lista de idades, selecionar as que são maiores que 20 e, para cada uma, calcular o ano de nascimento correspondente (aproximado, considerando o ano atual).

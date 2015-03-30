@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+ <html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+ <title>Photo Gallery Photo Page</title>
+ <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+ <script language="JavaScript">
+ function parseQueryString(queryString) {
+   var queryObject = new Object();
+   queryString = queryString.replace(/^.*\?(.+)$/,'$1');
+ 
+   while ((pair = queryString.match(/([^=]+)=\'?([^\&\']*)\'?\&?/)) && pair[0].length) {
+     queryString = queryString.substring( pair[0].length );
+     
+     if (/^\-?\d+$/.test(pair[2])) pair[2] = parseInt(pair[2]);
+     queryObject[pair[1]] = pair[2];
+   }
+ 
+   return queryObject;
+ }
+ 
+ </script>
+ <link href="styles.css" rel="stylesheet" type="text/css" />
+ </head>
+ 
+ <body>
+ <div id="main">
+ <div class="center">
+ <script language="javascript">
+ var queryObj = parseQueryString( location.search );
+ 	var	alt = unescape(queryObj.alt);
+ 	document.write("<h1>" + alt + "</h1>");
+ 	document.write("<img src=\"" + queryObj.src + "\" width=\"600\" height=\"" + queryObj.height + "\" alt=\"" + alt + "\" /><br />\n");
+ </script>
+ </div>
+ </div>
+ </body>
+ </html>

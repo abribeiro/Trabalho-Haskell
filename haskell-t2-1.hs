@@ -1,4 +1,4 @@
--- Trabalho 1 Haskell 
+-- Trabalho 2 Haskell 
 -- Alessandro Bueno Ribeiro
 
 -- Parte 1: List comprehension

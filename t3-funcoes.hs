@@ -80,11 +80,35 @@ isElem x (y:ys) | x == y    = True
 isElem' :: Int -> [Int] -> Bool
 isElem' x = any (== x)
 
---7. Escreva uma função recursiva que retorne o número de vogais em uma string.
---8. Escreva uma função não-recursiva que retorne o número de consoantes em uma string.
---9. Escreva uma função não-recursiva isInt :: String -> Bool que verifique se uma dada string só contém dígitos (0 a 9).
---Exemplos:
--- -- > isInt "901"
---True
---- -- > isInt "2014a"
---False
+
+-- 7. Escreva uma função recursiva que retorne o número de vogais em uma string.
+vogais :: String -> Int
+vogais [] = 0
+vogais x = (cont (head x)) + (vogais (tail x))
+  where 
+      cont x | x == 'a' = 1
+             | x == 'e' = 1
+             | x == 'i' = 1
+             | x == 'o' = 1
+             | x == 'u' = 1
+             | x == 'A' = 1
+             | x == 'E' = 1
+             | x == 'I' = 1
+             | x == 'O' = 1
+             | x == 'U' = 1
+             | otherwise = 0
+
+-- 8. Escreva uma função não-recursiva que retorne o número de consoantes em uma string.
+
+consoantes :: String -> Int  
+consoantes x = length (filter (\ x -> (x /= 'a') && (x /= 'e') && (x /= 'i') && (x /= 'o') && (x /= 'u') && (x /= 'A') && (x /= 'E') && (x /= 'I') && (x /= 'O') && (x /= 'U') && (x /= ' ')) x)
+
+-- 9. Escreva uma função não-recursiva que verifique se uma dada string só contém dígitos (0 a 9).
+digNove :: String -> Bool
+digNove [] = False 
+digNove x = if length (x)/= length (filter (\x-> (x == '0') || (x == '1') || (x == '2') || (x == '3') || (x == '4') || (x == '5') || (x == '6') || (x == '7') || (x == '8') || (x == '9') && (x /=' ')) x) then False else True
+
+-- 10. Escreva uma função não-recursiva que converta uma string em um número inteiro, fazendo operações aritméticas com seus dígitos (p.ex.: "356" = 3*100 + 5*10 + 6*1 = 356). Considere que a string seja um número válido, isto é, só contenha dígitos de 0 a 9.
+
+strToInt :: String -> Int
+strToInt x = sum $ zipWith (*) (map (10^) [(length x) -1, (length x) -2 .. 0]) $ map (digitToInt) x
